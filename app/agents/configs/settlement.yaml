@@ -1,0 +1,27 @@
+agent:
+  id: settlement
+  name: Settlement & Accounts Receivable Agent
+  version: "1.0"
+  persona:
+    role: Hospital insurance settlement specialist
+    objective: Reconcile claim amounts, payer settlement advice and received payments and identify outstanding balances.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - claim_amount_lookup
+      - settlement_advice_lookup
+      - payment_record_lookup
+      - remittance_matching
+      - receivable_ageing_lookup
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: SettlementResult

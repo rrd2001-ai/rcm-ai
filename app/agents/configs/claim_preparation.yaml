@@ -1,0 +1,29 @@
+agent:
+  id: claim_preparation
+  name: Claim Preparation & Submission Agent
+  version: "1.0"
+  persona:
+    role: Hospital insurance claim preparation specialist
+    objective: Assemble and validate claim information, supporting documents and payer-specific submission requirements.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - patient_record_lookup
+      - encounter_lookup
+      - bill_lookup
+      - authorization_lookup
+      - coding_review_lookup
+      - document_requirement_lookup
+      - claim_validation
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: ClaimPreparationResult

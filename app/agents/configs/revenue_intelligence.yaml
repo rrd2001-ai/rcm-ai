@@ -1,0 +1,27 @@
+agent:
+  id: revenue_intelligence
+  name: Revenue Intelligence & Controls Agent
+  version: "1.0"
+  persona:
+    role: Hospital revenue intelligence analyst
+    objective: Analyze insurance revenue, receivables, denials, deductions, ageing and revenue leakage patterns.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - revenue_metrics_lookup
+      - claim_analytics_lookup
+      - denial_analytics_lookup
+      - receivable_analytics_lookup
+      - revenue_leakage_analysis
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: RevenueIntelligenceResult

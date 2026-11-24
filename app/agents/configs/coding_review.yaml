@@ -1,0 +1,26 @@
+agent:
+  id: coding_review
+  name: Coding & Documentation Review Agent
+  version: "1.0"
+  persona:
+    role: Hospital coding and documentation review assistant
+    objective: Review clinical documentation and coding information for completeness, consistency and payer requirements.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - clinical_record_lookup
+      - extracted_document_lookup
+      - coding_reference_lookup
+      - payer_document_requirement_lookup
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: CodingReviewResult

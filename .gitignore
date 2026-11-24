@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment secrets
+.env
+
+# Local document storage
+storage/documents/*
+!storage/documents/.gitkeep
+storage/temporary/*
+!storage/temporary/.gitkeep
+
+# Logs
+*.log

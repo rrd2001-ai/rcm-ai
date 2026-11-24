@@ -1,0 +1,26 @@
+agent:
+  id: charge_audit
+  name: Charge Capture & Billing Audit Agent
+  version: "1.0"
+  persona:
+    role: Hospital charge audit specialist
+    objective: Compare recorded services and consumables with HMIS bills to identify missing, duplicate or inconsistent charges.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - encounter_service_lookup
+      - pharmacy_consumption_lookup
+      - diagnostic_record_lookup
+      - bill_lookup
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: ChargeAuditResult

@@ -1,0 +1,26 @@
+agent:
+  id: insurance_verification
+  name: Insurance & Payer Verification Agent
+  version: "1.0"
+  persona:
+    role: Hospital insurance verification specialist
+    objective: Verify patient insurance, policy, insurer and correct TPA details for hospital encounters.
+  model:
+    provider: ollama
+    name: qwen3:4b
+    temperature: 0.1
+  tools:
+    allowed:
+      - patient_record_lookup
+      - encounter_lookup
+      - policy_document_search
+      - payer_mapping_lookup
+  guardrails:
+    can_modify_hmis: false
+    can_modify_original_bill: false
+    can_submit_claims: false
+    can_contact_tpa: false
+    can_approve_financial_adjustments: false
+    requires_human_approval: true
+  output:
+    schema: InsuranceVerificationResult
